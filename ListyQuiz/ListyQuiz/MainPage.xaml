@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ListyQuiz.MainPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="qList"
+                  ItemsSource="{Binding Questions}"
+                  IsVisible="{Binding IsVisible}">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal" 
+                                 Padding="10,5,5,10"
+                                 BackgroundColor="Accent">
+                        <Label Text="Which Lord of the Rings Character are you?" 
+                               HorizontalTextAlignment="Center"
+                               HeightRequest="60"
+                               FontSize="20"/>
+
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell >
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="False"
+                                      Clicked="OnFalse" 
+                                      CommandParameter="{Binding ID}">
+
+                                </MenuItem>
+                                <MenuItem Text="True" 
+                                      Clicked="OnTrue" 
+                                      CommandParameter="{Binding ID}">
+
+                                </MenuItem>
+                            </ViewCell.ContextActions>
+
+                            <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="StartAndExpand">
+                                <StackLayout Padding="5,0,0,0" 
+                                         VerticalOptions="StartAndExpand" 
+                                         Orientation="Vertical">
+                                    <Label Text="{Binding Text}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout x:Name="images" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="False">
+                <StackLayout Padding="5,5,5,5">
+                    <Image x:Name="gimli"
+                           Source="gimli"
+                           Aspect="AspectFit"
+                           HeightRequest="350"
+                           WidthRequest="300"
+                           IsVisible="False"/>
+                    <Image x:Name="legolas"
+                           Source="legolas"
+                           Aspect="AspectFit"
+                           HeightRequest="350"
+                           WidthRequest="300"
+                           IsVisible="False"/>
+                    <Image x:Name="aragorn"
+                           Source="aragorn"
+                           Aspect="AspectFit"
+                           HeightRequest="350"
+                           WidthRequest="300"
+                           IsVisible="False"/>
+                    <Image x:Name="gandalf"
+                           Source="gandalf"
+                           Aspect="AspectFit"
+                           HeightRequest="350"
+                           WidthRequest="300"
+                           IsVisible="False"/>
+
+                    <Label x:Name="results" Text="Your are no-one" HorizontalTextAlignment="Center" VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <Button x:Name="btnCalc" Clicked="OnCalculate" Text="Get my Results" HorizontalOptions="CenterAndExpand" IsEnabled="False"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
